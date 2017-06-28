@@ -2,6 +2,8 @@ import sys
 import discord
 from discord.ext import commands
 import asyncio
+import aiohttp
+import json
 
 #Thanks for trying Osmibot!
 #The bot can be run by entering your bot's token, NOT Client ID, into the string at the bottom of the file..
@@ -25,5 +27,20 @@ async def die():
 @bot.command()
 async def ping():
     await bot.say('Pong!')
+
+@bot.group()
+async def cog():
+    await bot.say('Cog Management for Osmibot. Subcommands are: \n ```install - Install a cog for Osmibot \n remove - Remove an installed cog \n load - Load an installed cog \n unload - Unload an installed cog```')
+
+@cog.command(pass_context=True)
+async def install(ctx):
+    await bot.say('Downloading cog...')
+    async with aiohttp.get('{0}') as r:
+        await bot.say('Downloaded ' + r)
+        await bot.say('Loading cog...')
+        await bot.say('jk just a test, sending file to commands channel')
+        if r.status == 200:
+            js = r.json()
+            await client.send_message(295879222994665473, js['file'])
 
 bot.run(token)
