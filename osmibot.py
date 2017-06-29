@@ -13,7 +13,7 @@ os.system('cls')
 bot = commands.Bot(command_prefix=['.', 'Osmibot, ', 'Osmi, '], description='Version 2.0 of the Best Discord Bot to ever exist')
 client = discord.Client()
 
-token = 'MjQ4NTU2OTU5NTIxODMyOTYy.DDVLlQ.z0CLKs6JT2Nc7wZOfkyntYcOli4'
+token = ''
 
 @bot.event
 async def on_ready():
