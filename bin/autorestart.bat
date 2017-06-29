@@ -1,4 +1,4 @@
 @echo off
 :home
-python osmibot.py
+python ..\osmibot.py
 goto home
