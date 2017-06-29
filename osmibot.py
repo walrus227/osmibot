@@ -7,18 +7,20 @@ import json
 import os
 
 #Thanks for trying Osmibot!
-#The bot can be run by entering your bot's token, NOT Client ID, into the string at the bottom of the file..
 os.system('cls')
 
 bot = commands.Bot(command_prefix=['.', 'Osmibot, ', 'Osmi, '], description='Version 2.0 of the Best Discord Bot to ever exist')
 client = discord.Client()
 
-token = ''
+with open('config.json') as config_data:
+    config = json.load(config_data)
+    token = config['token']
+    clientid = config['client']
 
 @bot.event
 async def on_ready():
     os.system('title Osmibot')
-    print('Logged in as ' + bot.user.name + ' (ID: ' + bot.user.id + ') on ' + str(len(client.servers)) + ' servers.')
+    print('Logged in as ' + bot.user.name + ' (ID: ' + bot.user.id + '.)')
     await bot.change_presence(game=discord.Game(name="v2.0"))
 
 @bot.command()
