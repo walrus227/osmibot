@@ -12,7 +12,12 @@ import platform
 useros = platform.system()
 
 inital_extensions = [
-    'cogs.meta'
+    'cogs.meta',
+    'cogs.fun',
+    'cogs.admin',
+    'cogs.extensions',
+    'cogs.owner',
+    'cogs.admin'
 ]
 
 if useros == 'Windows':
@@ -38,18 +43,6 @@ async def on_ready():
     os.system('title Osmibot')
     print('Logged in as ' + bot.user.name + ' (ID: ' + bot.user.id + '.)')
     await bot.change_presence(game=discord.Game(name=".help"))
-
-@bot.command()
-async def die():
-    """Shut down the bot"""
-    await bot.say(':wave:')
-    await client.logout()
-    sys.exit()
-
-@bot.command(pass_context = True)
-async def whoami(ctx):
-    """Returns the user who ran the command"""
-    await bot.say("Why, you're " + str(ctx.message.author) + ', of course!')
 
 for extension in inital_extensions:
     try:
