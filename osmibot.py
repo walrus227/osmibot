@@ -5,12 +5,15 @@ import asyncio
 import aiohttp
 import json
 import os
+import platform
 
 #Thanks for trying Osmibot!
-os.system('cls')
-dir_path = os.getcwd()
-if not dir_path == 'master':
-    os.chdir('master')
+useros = platform.system()
+
+if useros == 'Windows':
+    os.system('cls')
+else:
+    os.system('clear')
 
 bot = commands.Bot(command_prefix=['.', 'Osmibot, ', 'Osmi, '], description='Version 2.0 of the Best Discord Bot to ever exist')
 client = discord.Client()
