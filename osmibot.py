@@ -1,5 +1,6 @@
 import sys
 import discord
+from cogs.utils import checks
 from discord.ext import commands
 import asyncio
 import aiohttp
@@ -10,14 +11,16 @@ import platform
 #Thanks for trying Osmibot!
 useros = platform.system()
 
-os.chdir('master')
+inital_extensions = [
+    'cogs.meta'
+]
 
 if useros == 'Windows':
     os.system('cls')
 else:
     os.system('clear')
 
-bot = commands.Bot(command_prefix=['.', 'Osmibot, ', 'Osmi, '], description='Version 2.0 of the Best Discord Bot to ever exist')
+bot = commands.Bot(command_prefix=['.', 'Osmibot, ', 'Osmi, '], description='Omnifunction text bot for Discord')
 client = discord.Client()
 
 try:
@@ -34,21 +37,25 @@ except Exception:
 async def on_ready():
     os.system('title Osmibot')
     print('Logged in as ' + bot.user.name + ' (ID: ' + bot.user.id + '.)')
-    await bot.change_presence(game=discord.Game(name="v2.0"))
+    await bot.change_presence(game=discord.Game(name=".help"))
 
 @bot.command()
 async def die():
+    """Shut down the bot"""
     await bot.say(':wave:')
     await client.logout()
     sys.exit()
 
-@bot.command()
-async def ping():
-    await bot.say('Pong!')
-
 @bot.command(pass_context = True)
 async def whoami(ctx):
-    await bot.say("Why, you're " + str(ctx.message.author) + ' of course!')
+    """Returns the user who ran the command"""
+    await bot.say("Why, you're " + str(ctx.message.author) + ', of course!')
+
+for extension in inital_extensions:
+    try:
+        bot.load_extension(extension)
+    except Exception as e:
+        print('Failed to load extension {}\n{}: {}'.format(extension, type(e).__name__, e))
 
 try:
     bot.run(token)
