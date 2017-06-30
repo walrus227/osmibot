@@ -20,7 +20,7 @@ if useros == 'Windows':
 else:
     os.system('clear')
 
-bot = commands.Bot(command_prefix=['.', 'Osmibot, ', 'Osmi, '], description='Omnifunction text bot for Discord')
+bot = commands.Bot(command_prefix=['.', 'Osmibot, ', 'Osmi, '], description='Omnifunction text bot for Discord', pm_help=True)
 client = discord.Client()
 
 try:
