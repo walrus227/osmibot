@@ -10,6 +10,8 @@ import platform
 #Thanks for trying Osmibot!
 useros = platform.system()
 
+os.chdir('master')
+
 if useros == 'Windows':
     os.system('cls')
 else:
@@ -43,6 +45,10 @@ async def die():
 @bot.command()
 async def ping():
     await bot.say('Pong!')
+
+@bot.command(pass_context = True)
+async def whoami(ctx):
+    await bot.say("Why, you're " + str(ctx.message.author) + ' of course!')
 
 try:
     bot.run(token)
