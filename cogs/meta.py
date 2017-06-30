@@ -1,7 +1,7 @@
 from discord.ext import commands
 import discord
 
-class Tools:
+class Meta:
     """Tools for managing the server and bot."""
 
     def __init__(self, bot):
@@ -13,4 +13,4 @@ class Tools:
         await self.bot.say('Pong!')
 
 def setup(bot):
-    bot.add_cog(Tools(bot))
+    bot.add_cog(Meta(bot))
