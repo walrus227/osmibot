@@ -40,7 +40,8 @@ except Exception:
 
 @bot.event
 async def on_ready():
-    os.system('title Osmibot')
+    if useros == 'Windows':
+        os.system('title Osmibot')
     print('Logged in as ' + bot.user.name + ' (ID: ' + bot.user.id + '.)')
     await bot.change_presence(game=discord.Game(name=".help"))
 
