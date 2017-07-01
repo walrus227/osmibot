@@ -11,7 +11,7 @@ class Admin:
 
     @commands.command(pass_context=True, no_pm=True)
     @checks.admin_or_permissions(ban_members=True)
-    async def bannu(self, ctx, user: discord.Member, days: str = None):
+    async def bannu(self, ctx, user: discord.Member, days: str = '0'):
         """Gloriously bans a user and deletes X days worth of messages.
         
         Minimum days 0, maximum 7. Defaults to 0."""
