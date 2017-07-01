@@ -13,9 +13,9 @@ class Cogs:
 
     @commands.group(pass_context=True)
     @checks.is_owner()
-    async def cog(self, sub: str = None):
-        """Cog Management system for Osmibot."""
-        print('Performed cog operation')
+    async def cog(self, ctx):
+        if ctx.invoked_subcommand is None:
+            await self.bot.say('Use .help cog for command usage')
     
     @cog.command(pass_context=True)
     @checks.is_owner()
@@ -26,7 +26,7 @@ class Cogs:
         else:
             await self.bot.say('Loading cog "' + cog + '."')
             try:
-                self.bot.load_extension('cogs.' + cog)
+                self.bot.load_extension('cogs.' + cog.lower())
                 await self.bot.say('Successfully loaded cog "' + cog + '."')
             except Exception as e:
                 await self.bot.say('Error! Check the console for more details.')
@@ -41,7 +41,7 @@ class Cogs:
         else:
             await self.bot.say('Unloading cog "' + cog + '."')
             try:
-                self.bot.unload_extension('cogs.' + cog)
+                self.bot.unload_extension('cogs.' + cog.lower())
                 await self.bot.say('Successfully unloaded cog "' + cog + '."')
             except Exception as e:
                 await self.bot.say('Error! Check the console for more details.')
@@ -56,8 +56,8 @@ class Cogs:
         else:
             await self.bot.say('Reloading cog "' + cog + '."')
             try:
-                self.bot.unload_extension('cogs.' + cog)
-                self.bot.load_extension('cogs.' + cog)
+                self.bot.unload_extension('cogs.' + cog.lower())
+                self.bot.load_extension('cogs.' + cog.lower())
                 await self.bot.say('Successfully reloaded cog "' + cog + '."')
             except Exception as e:
                 await self.bot.say('Error! Check the console for more details.')

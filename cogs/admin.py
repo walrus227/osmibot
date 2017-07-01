@@ -49,5 +49,15 @@ class Admin:
                 print(e)
                 await self.bot.say('Error! Check the console for details.')
 
+    @commands.command(pass_context=True, no_pm=True)
+    @checks.mod_or_permissions()
+    async def mute(self, user: discord.Member):
+        """Mutes a user.
+
+        Unmute using .unmute @user"""
+        await self.bot.say('Currently unimplemented')
+
+
+
 def setup(bot):
     bot.add_cog(Admin(bot))
