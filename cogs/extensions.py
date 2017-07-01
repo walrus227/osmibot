@@ -14,6 +14,7 @@ class Cogs:
     @commands.group(pass_context=True)
     @checks.is_owner()
     async def cog(self, ctx):
+        """Cog management commands for Osmibot."""
         if ctx.invoked_subcommand is None:
             await self.bot.say('Use .help cog for command usage')
     
